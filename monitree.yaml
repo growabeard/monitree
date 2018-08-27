@@ -1,0 +1,323 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: MoniTree Service 
+  description: APIs to perform operations on MoniTree data
+basePath: /monitree/v1
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  basicAuth:
+    type: basic
+    description: HTTP Basic Authentication. Over `HTTPS`.
+security:
+  - basicAuth: []
+paths:
+  /readings:
+    get:
+      summary: Get a list of readings
+      description: Get a list of readings from the data store.
+      operationId: getHistory
+      parameters:
+        - name: startDate
+          type: string
+          format: dateTime
+          in: query
+          description: the start date of history to retreive
+          required: false
+        - name: endDate
+          type: string
+          format: dateTime
+          in: query
+          description: the start date of history to retreive
+          required: false
+      tags: 
+        - Reading
+      responses:
+        '200':
+          description: Successful retrieval of reading data
+          headers:
+            x-b3-traceid:
+              type: string
+              description: traceid
+            x-b3-spanid:
+              type: string
+              description: spanid
+          schema: 
+            type: array
+            items:
+              $ref: '#/definitions/Reading'
+        '400':
+          description: Bad Request
+          headers:
+            x-b3-traceid:
+              type: string
+              description: traceid
+            x-b3-spanid:
+              type: string
+              description: spanid
+          schema:
+            $ref: '#/definitions/Error'
+          examples:
+            application/json: 
+              code: 400
+              message: Bad Request
+              fields: Invalid reading parameter.
+        '401':
+          description: Not Authorized
+          headers:
+            x-b3-traceid:
+              type: string
+              description: traceid
+            x-b3-spanid:
+              type: string
+              description: spanid
+          examples:
+            application/json: {}
+        '500':
+          description: Server error saving reading data
+          headers:
+            x-b3-traceid:
+              type: string
+              description: traceid
+            x-b3-spanid:
+              type: string
+              description: spanid
+          schema:
+            $ref: '#/definitions/Error'
+          examples:
+            application/json:
+              code: 500
+              message: Internal Server Error
+              fields: An unexpected error occurred.
+    post:
+      summary: Create a new reading entry
+      description: Create a new reading entry in data store.
+      operationId: createHistory
+      parameters:
+        - in: body
+          name: reading
+          description: the reading to create
+          schema:
+            $ref: '#/definitions/Reading'
+      tags:
+        - Reading
+      responses:
+        '200':
+          description: Successful insert of history data
+          headers:
+            x-b3-traceid:
+              type: string
+              description: traceid
+            x-b3-spanid:
+              type: string
+              description: spanid
+          schema: 
+            $ref: '#/definitions/Reading'
+        '400':
+          description: Bad Request
+          headers:
+            x-b3-traceid:
+              type: string
+              description: traceid
+            x-b3-spanid:
+              type: string
+              description: spanid
+          schema:
+            $ref: '#/definitions/Error'
+          examples:
+            application/json: 
+              code: 400
+              message: Bad Request
+              fields: Invalid reading parameter.
+        '401':
+          description: Not Authorized
+          headers:
+            x-b3-traceid:
+              type: string
+              description: traceid
+            x-b3-spanid:
+              type: string
+              description: spanid
+          examples:
+            application/json: {}
+        '500':
+          description: Server error saving reading data
+          headers:
+            x-b3-traceid:
+              type: string
+              description: traceid
+            x-b3-spanid:
+              type: string
+              description: spanid
+          schema:
+            $ref: '#/definitions/Error'
+          examples:
+            application/json:
+              code: 500
+              message: Internal Server Error
+              fields: An unexpected error occurred.
+  '/readings/{id}':
+    get:
+      operationId: getReadingById
+      summary: Get the reading by id
+      description: Get the reading by id from the data store
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          format: int64
+          description: reading id
+          required: true
+      tags:
+        - Reading
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Get specific reading
+          schema:
+            $ref: '#/definitions/Reading'
+        '400':
+          description: Bad request. Query parameters are not valid
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Not Authorized
+        '404':
+          description: No matching reading was found
+        default:
+          description: Server error querying for reading
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      operationId: updateReadingById
+      summary: Update the reading
+      description: The end point updates and returns the updated reading
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          format: int64
+          description: Reading id
+          required: true
+        - name: reading
+          in: body
+          description: The reading you want to update
+          schema:
+            $ref: '#/definitions/Reading'
+          required: true
+      tags:
+        - Reading
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Update a reading
+          schema:
+            $ref: '#/definitions/Reading'
+        '400':
+          description: Bad request. Query parameters are not valid
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Not Authorized
+        '404':
+          description: No matching reading was found
+        default:
+          description: Server error querying for reading
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      operationId: deleteReadingById
+      summary: Delete the reading
+      description: The end point deletes the reading
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          format: int64
+          description: Reading id
+          required: true
+      tags:
+        - Reading
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Deletes the reading with the ID in the path
+        '400':
+          description: Bad request. Query parameters are not valid
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Not Authorized
+        '404':
+          description: No matching reading was found
+        default:
+          description: Server error querying for reading
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Reading:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: the id of the reading
+      name:
+        type: string
+        description: the name of the object source of the reading
+      date:
+        type: string
+        format: dateTime
+        description: the string representation of the date the reading was taken
+      temp:
+        type: number
+        format: double
+        description: the temperature at the time of the reading, in fahrenheit
+      creator:
+        type: string
+        enum: [sensor, app]
+        description: The origin of the reading.
+      moisture:
+        type: number
+        format: double
+        description: The level of moisture in the soil
+      humidity:
+        type: number
+        format: double
+        description: The level of humidity in the air
+      watered:
+        type: boolean
+        description: Was the pump run?
+    example:
+      id: 1421
+      name: Tree
+      date: 2014-12-09T13:06:08.260+0000
+      temp: 70.0
+      creator: sensor
+      moisture: 75.0
+      humidity: 25.0
+      watered: false
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+        description: The error code
+      message:
+        type: string
+        description: The error message
+      fields:
+        type: string
+        description: The fields that are throwing an error
+    example:
+      code: 500
+      message: Internal Server Error
+      fields: An unexpected error occurred.
