@@ -1,0 +1,137 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>MoniTree</artifactId>
+  <name>MoniTree :: Parent</name>
+  <version>1.0-SNAPSHOT</version>
+  <groupId>com.witt.monitree</groupId>
+  <packaging>pom</packaging>
+
+  <description>This is the Parent POM for MoniTree</description>
+
+  <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>1.5.2.RELEASE</version>
+  </parent>
+
+  <properties>
+    <swagger.code.generation.base.package>com.witt.monitree</swagger.code.generation.base.package>
+    <input.yaml.file>monitree.yaml</input.yaml.file>
+    <plugin.version.spring.cloud.contract>1.1.4.RELEASE</plugin.version.spring.cloud.contract>
+    <plugin.version.swagger.codegen>2.2.3</plugin.version.swagger.codegen>
+    <version.gatling>2.3.0</version.gatling>
+    <version.cucumber>1.2.4</version.cucumber>
+    <version.spring.cloud.services.dependencies>1.4.1.RELEASE</version.spring.cloud.services.dependencies>
+    <plugin.version.codehaus>3.0.0</plugin.version.codehaus>
+    <plugin.version.swagger.validator>1.0.0-SNAPSHOT</plugin.version.swagger.validator>
+    <version.springfox>2.7.0</version.springfox>
+    <version.spring.boot.admin.starter.client>1.5.4</version.spring.boot.admin.starter.client>
+    <java.version>1.8</java.version>
+    <version.swagger>1.5.13</version.swagger>
+    <plugin.version.gatling>2.2.4</plugin.version.gatling>
+    <plugin.version.jacoco>0.7.9</plugin.version.jacoco>
+    <version.spring.cloud.dependencies>Dalston.RELEASE</version.spring.cloud.dependencies>
+    <default.goal>install</default.goal>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.pivotal.spring.cloud</groupId>
+        <artifactId>spring-cloud-services-dependencies</artifactId>
+        <version>${version.spring.cloud.services.dependencies}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${version.spring.cloud.dependencies}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-core</artifactId>
+        <version>${version.swagger}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>${version.swagger}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>${version.springfox}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${version.springfox}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-starter-client</artifactId>
+        <version>${version.spring.boot.admin.starter.client}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <defaultGoal>${default.goal}</defaultGoal>
+    <plugins>
+      <plugin>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-codegen-maven-plugin</artifactId>
+        <version>${plugin.version.swagger.codegen}</version>
+        <executions>
+          <execution>
+            <id>server</id>
+            <phase>none</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <apiPackage>${swagger.code.generation.base.package}.api</apiPackage>
+              <modelPackage>${swagger.code.generation.base.package}.model</modelPackage>
+              <language>spring</language>
+              <configOptions>
+                <dateLibrary>java</dateLibrary>
+                <configPackage>${swagger.code.generation.base.package}.config</configPackage>
+                <basePackage>${swagger.code.generation.base.package}.handler</basePackage>
+              </configOptions>
+            </configuration>
+          </execution>
+          <execution>
+            <id>client</id>
+            <phase>none</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <apiPackage>${swagger.code.generation.base.package}.client.api</apiPackage>
+              <modelPackage>${swagger.code.generation.base.package}.client.model</modelPackage>
+              <invokerPackage>${swagger.code.generation.base.package}.client.handler</invokerPackage>
+              <language>dart</language>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <inputSpec>${user.dir}/yaml/${input.yaml.file}</inputSpec>
+          <output>${project.build.directory}/generated-sources</output>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <modules>
+    <module>api</module>
+    <module>client</module>
+    <module>service</module>
+  </modules>
+
+</project>
