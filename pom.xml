@@ -107,16 +107,29 @@
             </configuration>
           </execution>
           <execution>
-            <id>client</id>
-            <phase>none</phase>
+            <id>dart-client</id>
             <goals>
               <goal>generate</goal>
             </goals>
             <configuration>
+              <output>${project.build.directory}/generated-sources/dart</output>
               <apiPackage>${swagger.code.generation.base.package}.client.api</apiPackage>
               <modelPackage>${swagger.code.generation.base.package}.client.model</modelPackage>
               <invokerPackage>${swagger.code.generation.base.package}.client.handler</invokerPackage>
               <language>dart</language>
+            </configuration>
+          </execution>
+          <execution>
+            <id>cpp-client</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <output>${project.build.directory}/generated-sources/cpp</output>
+              <apiPackage>${swagger.code.generation.base.package}.client.api</apiPackage>
+              <modelPackage>${swagger.code.generation.base.package}.client.model</modelPackage>
+              <invokerPackage>${swagger.code.generation.base.package}.client.handler</invokerPackage>
+              <language>cpprest</language>
             </configuration>
           </execution>
         </executions>
