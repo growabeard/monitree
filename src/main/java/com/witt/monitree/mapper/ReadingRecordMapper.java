@@ -1,5 +1,6 @@
 package com.witt.monitree.mapper;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class ReadingRecordMapper {
 	public ReadingRecord mapToRecord(Reading reading) {
 		ReadingRecord record = new ReadingRecord();
 		record.setCreator(reading.getCreator().name());
-		record.setDate(reading.getDate());
+		record.setDate(Timestamp.valueOf(reading.getDate()));
 		record.setHumidity(reading.getHumidity());
 		record.setId(reading.getId());
 		record.setMoisture(reading.getMoisture());
@@ -24,7 +25,7 @@ public class ReadingRecordMapper {
 	public Reading mapToReturnReading(ReadingRecord save) {
 		Reading reading = new Reading();
 		reading.setCreator(Reading.CreatorEnum.fromValue(save.getCreator()));
-		reading.setDate(save.getDate());
+		reading.setDate(save.getDate().toLocaleString());
 		reading.setHumidity(save.getHumidity());
 		reading.setId(save.getId());
 		reading.setMoisture(save.getMoisture());

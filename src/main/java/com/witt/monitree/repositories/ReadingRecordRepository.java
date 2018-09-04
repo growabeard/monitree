@@ -1,6 +1,7 @@
 package com.witt.monitree.repositories;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -8,6 +9,6 @@ import com.witt.monitree.entities.ReadingRecord;
 
 public interface ReadingRecordRepository extends CrudRepository<ReadingRecord, Long> {
 
-	Iterable<ReadingRecord> findTopByDateBetweenOrderByDate(Date start, Date stop);
+	Iterable<ReadingRecord> findTopByDateBetweenOrderByDate(Timestamp start, Timestamp stop);
 	
 }

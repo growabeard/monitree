@@ -1,12 +1,17 @@
 package com.witt.monitree.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import com.witt.monitree.model.Reading.CreatorEnum;
@@ -24,7 +29,8 @@ public class ReadingRecord implements Serializable {
 	private String name;
 
 	@Column (name = "date")
-	private String date;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Timestamp date;
 
 	@Column (name = "temp")
 	private Double temp;
@@ -61,11 +67,16 @@ public class ReadingRecord implements Serializable {
 		this.name = name;
 	}
 
-	public String getDate() {
+	@PrePersist
+	protected void onCreate() {
+	    date = new Timestamp(System.currentTimeMillis());
+	}
+	
+	public Timestamp getDate() {
 		return date;
 	}
-
-	public void setDate(String date) {
+	
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 

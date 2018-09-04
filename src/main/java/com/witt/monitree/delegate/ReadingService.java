@@ -1,6 +1,7 @@
 package com.witt.monitree.delegate;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,13 @@ import com.witt.monitree.repositories.ReadingRecordRepository;
 @Service
 public class ReadingService {
 
+	private ReadingRecordRepository recordRepo;
+
 	@Autowired
-	ReadingRecordRepository recordRepo;
+	public ReadingService(
+	ReadingRecordRepository recordRepo) {
+		this.recordRepo = recordRepo;
+	}
 	
 	ReadingRecordMapper mapper = new ReadingRecordMapper();
 	
@@ -27,7 +33,7 @@ public class ReadingService {
 	}
 
 	public List<Reading> getReadingsInDateRange(String startDate, String endDate) {
-		return mapper.mapRecordListToReturnList(recordRepo.findTopByDateBetweenOrderByDate(Date.valueOf(startDate), Date.valueOf(endDate)));
+		return mapper.mapRecordListToReturnList(recordRepo.findTopByDateBetweenOrderByDate(Timestamp.valueOf(startDate), Timestamp.valueOf(endDate)));
 	}
 
 	public Reading getById(Long id) {
