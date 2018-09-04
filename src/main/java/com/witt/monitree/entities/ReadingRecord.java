@@ -29,7 +29,6 @@ public class ReadingRecord implements Serializable {
 	private String name;
 
 	@Column (name = "date")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Timestamp date;
 
 	@Column (name = "temp")
