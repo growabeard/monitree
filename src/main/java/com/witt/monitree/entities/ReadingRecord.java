@@ -66,11 +66,6 @@ public class ReadingRecord implements Serializable {
 		this.name = name;
 	}
 
-	@PrePersist
-	protected void onCreate() {
-	    date = new Timestamp(System.currentTimeMillis());
-	}
-	
 	public Timestamp getDate() {
 		return date;
 	}
