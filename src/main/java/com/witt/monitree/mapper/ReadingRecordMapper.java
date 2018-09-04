@@ -24,8 +24,8 @@ public class ReadingRecordMapper {
 
 	public Reading mapToReturnReading(ReadingRecord save) {
 		Reading reading = new Reading();
-		reading.setCreator(Reading.CreatorEnum.fromValue(save.getCreator()));
-		reading.setDate(save.getDate().toLocaleString());
+		reading.setCreator(Reading.CreatorEnum.valueOf(save.getCreator()));
+		reading.setDate(save.getDate().toString());
 		reading.setHumidity(save.getHumidity());
 		reading.setId(save.getId());
 		reading.setMoisture(save.getMoisture());
