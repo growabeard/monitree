@@ -35,6 +35,11 @@ paths:
           in: query
           description: the start date of history to retreive
           required: false
+        - name: name
+          type: string
+          in: query
+          description: the name of the plant to retrieve history on
+          required: false
       tags: 
         - Reading
       responses:

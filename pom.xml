@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project 
-	xmlns="http://maven.apache.org/POM/4.0.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.witt.monitree</groupId>
 	<artifactId>MoniTree</artifactId>
@@ -111,7 +110,24 @@
 							<language>cpprest</language>
 						</configuration>
 					</execution>
-					<!-- execution><id>api</id><goals><goal>generate</goal></goals><configuration><output>${project.build.directory}/generated-sources/api</output><apiPackage>${swagger.code.generation.base.package}.api</apiPackage><modelPackage>${swagger.code.generation.base.package}.model</modelPackage><language>spring</language><configOptions><dateLibrary>java</dateLibrary><configPackage>${swagger.code.generation.base.package}.config</configPackage><basePackage>${swagger.code.generation.base.package}.handler</basePackage></configOptions></configuration></execution -->
+					<!-- execution>
+						<id>api</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<output>${project.build.directory}/generated-sources/api</output>
+							<apiPackage>${swagger.code.generation.base.package}.gen.api</apiPackage>
+							<modelPackage>${swagger.code.generation.base.package}.gen.model</modelPackage>
+							<language>spring</language>
+							<configOptions>
+								<dateLibrary>java</dateLibrary>
+								<configPackage>${swagger.code.generation.base.package}.gen.config</configPackage>
+								<basePackage>${swagger.code.generation.base.package}.gen.handler</basePackage>
+								<generateSupportingFiles>false</generateSupportingFiles>
+							</configOptions>
+						</configuration>
+					</execution-->
 				</executions>
 				<configuration>
 					<inputSpec>${user.dir}/yaml/${input.yaml.file}</inputSpec>

@@ -24,28 +24,31 @@ public class ReadingsApiController implements ReadingsApi {
 	@Autowired
 	ReadingService readingDelegate;
 
-    public ResponseEntity<Reading> createHistory(@ApiParam(value = "the reading to create"  )  @Valid @RequestBody Reading reading) {
+	@Override
+	public ResponseEntity<Reading> createHistory(@ApiParam(value = "the reading to create"  )  @Valid @RequestBody Reading reading) {
         return new ResponseEntity<Reading>(readingDelegate.save(reading), HttpStatus.OK);
     }
 
+    @Override
     public ResponseEntity<Void> deleteReadingById(@ApiParam(value = "Reading id",required=true ) @PathVariable("id") Long id) {
         readingDelegate.delete(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Reading>> getHistory(@ApiParam(value = "the start date of history to retreive") @RequestParam(value = "startDate", required = false) String startDate,
-        @ApiParam(value = "the start date of history to retreive") @RequestParam(value = "endDate", required = false) String endDate) {
-    	return new ResponseEntity<List<Reading>>(readingDelegate.getReadingsInDateRange(startDate, endDate), HttpStatus.OK);
-    }
-
+    @Override
     public ResponseEntity<Reading> getReadingById(@ApiParam(value = "reading id",required=true ) @PathVariable("id") Long id) {
         return new ResponseEntity<Reading>(readingDelegate.getById(id), HttpStatus.OK);
     }
 
+    @Override
     public ResponseEntity<Reading> updateReadingById(@ApiParam(value = "Reading id",required=true ) @PathVariable("id") Long id,
         @ApiParam(value = "The reading you want to update" ,required=true )  @Valid @RequestBody Reading reading) {
-        // do some magic!
         return new ResponseEntity<Reading>(readingDelegate.updateById(id, reading), HttpStatus.OK);
     }
+
+	@Override
+	public ResponseEntity<List<Reading>> getHistory(String startDate, String endDate, String name) {
+    	return new ResponseEntity<List<Reading>>(readingDelegate.getReadingsInDateRange(startDate, endDate, name), HttpStatus.OK);
+	}
 
 }

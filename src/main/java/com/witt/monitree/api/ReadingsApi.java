@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-09-02T14:42:09.252Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-09-09T22:15:51.602Z")
 
 @Api(value = "readings", description = "the readings API")
 public interface ReadingsApi {
@@ -76,7 +76,7 @@ public interface ReadingsApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.GET)
-    ResponseEntity<List<Reading>> getHistory(@ApiParam(value = "the start date of history to retreive") @RequestParam(value = "startDate", required = false) String startDate,@ApiParam(value = "the start date of history to retreive") @RequestParam(value = "endDate", required = false) String endDate);
+    ResponseEntity<List<Reading>> getHistory(@ApiParam(value = "the start date of history to retreive") @RequestParam(value = "startDate", required = false) String startDate,@ApiParam(value = "the start date of history to retreive") @RequestParam(value = "endDate", required = false) String endDate,@ApiParam(value = "the name of the plant to retrieve history on") @RequestParam(value = "name", required = false) String name);
 
 
     @ApiOperation(value = "Get the reading by id", notes = "Get the reading by id from the data store", response = Reading.class, authorizations = {
