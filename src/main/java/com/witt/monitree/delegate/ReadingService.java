@@ -32,8 +32,19 @@ public class ReadingService {
 		recordRepo.delete(id);		
 	}
 
-	public List<Reading> getReadingsInDateRange(String startDate, String endDate, String name) {
-		return mapper.mapRecordListToReturnList(recordRepo.findTopByDateBetweenAndByNameOrderByDate(Timestamp.valueOf(startDate), Timestamp.valueOf(endDate), name));
+	public List<Reading> getReadingsByQuery(String startDate, String endDate, String name) {
+		if (null == name) {
+			return getReadingsWithinDateRange(startDate, endDate);
+		}
+		return getReadingsWithDateRangeAndName(startDate, endDate, name);
+	}
+
+	private List<Reading> getReadingsWithinDateRange(String startDate, String endDate) {
+		return mapper.mapRecordListToReturnList(recordRepo.findTopByDateBetweenOrderByDate(Timestamp.valueOf(startDate), Timestamp.valueOf(endDate)));
+	}
+
+	private List<Reading> getReadingsWithDateRangeAndName(String startDate, String endDate, String name) {
+		return mapper.mapRecordListToReturnList(recordRepo.findTopByDateBetweenAndNameOrderByDate(Timestamp.valueOf(startDate), Timestamp.valueOf(endDate), name));
 	}
 
 	public Reading getById(Long id) {

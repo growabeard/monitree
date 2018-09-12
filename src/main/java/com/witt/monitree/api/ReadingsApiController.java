@@ -48,7 +48,7 @@ public class ReadingsApiController implements ReadingsApi {
 
 	@Override
 	public ResponseEntity<List<Reading>> getHistory(String startDate, String endDate, String name) {
-    	return new ResponseEntity<List<Reading>>(readingDelegate.getReadingsInDateRange(startDate, endDate, name), HttpStatus.OK);
+    	return new ResponseEntity<List<Reading>>(readingDelegate.getReadingsByQuery(startDate, endDate, name), HttpStatus.OK);
 	}
 
 }
