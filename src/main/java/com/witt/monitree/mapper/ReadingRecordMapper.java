@@ -6,11 +6,13 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import com.witt.monitree.entities.ReadingRecord;
 import com.witt.monitree.model.Reading;
 
+@Component
 public class ReadingRecordMapper {
 
 	public ReadingRecord mapToRecord(Reading reading) {
