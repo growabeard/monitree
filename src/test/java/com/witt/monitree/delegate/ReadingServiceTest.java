@@ -24,8 +24,8 @@ public class ReadingServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		when(MOCK.findTopByDateBetweenAndNameOrderByDate(any(Timestamp.class), any(Timestamp.class), anyString())).thenReturn(Arrays.asList(new ReadingRecord()));
-		when(MOCK.findTopByDateBetweenOrderByDate(any(Timestamp.class), any(Timestamp.class))).thenReturn(Arrays.asList(new ReadingRecord()));
+		when(MOCK.findAllByDateBetweenAndNameOrderByDate(any(Timestamp.class), any(Timestamp.class), anyString())).thenReturn(Arrays.asList(new ReadingRecord()));
+		when(MOCK.findAllByDateBetweenOrderByDate(any(Timestamp.class), any(Timestamp.class))).thenReturn(Arrays.asList(new ReadingRecord()));
 		readingService = new ReadingService(MOCK, Mockito.mock(ReadingRecordMapper.class));
 	}
 
@@ -35,7 +35,7 @@ public class ReadingServiceTest {
 		Timestamp startDate = Timestamp.valueOf("2018-09-10 10:00:00");
 		Timestamp endDate = Timestamp.valueOf("2018-10-10 10:00:00");
 		
-		verify(MOCK, times(1)).findTopByDateBetweenOrderByDate(startDate, endDate);
+		verify(MOCK, times(1)).findAllByDateBetweenOrderByDate(startDate, endDate);
 	}
 
 }

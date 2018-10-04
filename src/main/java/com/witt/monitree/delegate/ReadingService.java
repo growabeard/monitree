@@ -50,11 +50,11 @@ public class ReadingService {
 	}
 
 	private List<Reading> getReadingsWithinDateRange(Timestamp startDate, Timestamp endDate) {
-		return mapper.mapRecordListToReturnList(recordRepo.findTopByDateBetweenOrderByDate(startDate, endDate));
+		return mapper.mapRecordListToReturnList(recordRepo.findAllByDateBetweenOrderByDate(startDate, endDate));
 	}
 
 	private List<Reading> getReadingsWithDateRangeAndName(Timestamp startDate, Timestamp endDate, String name) {
-		return mapper.mapRecordListToReturnList(recordRepo.findTopByDateBetweenAndNameOrderByDate(startDate, endDate, name));
+		return mapper.mapRecordListToReturnList(recordRepo.findAllByDateBetweenAndNameOrderByDate(startDate, endDate, name));
 	}
 
 	public Reading getById(Long id) {
