@@ -2,7 +2,11 @@ package com.witt.monitree.mapper;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TimeZone;
+
+import org.springframework.util.StringUtils;
 
 import com.witt.monitree.entities.ReadingRecord;
 import com.witt.monitree.model.Reading;
@@ -12,7 +16,12 @@ public class ReadingRecordMapper {
 	public ReadingRecord mapToRecord(Reading reading) {
 		ReadingRecord record = new ReadingRecord();
 		record.setCreator(reading.getCreator().name());
-		record.setDate(Timestamp.valueOf(reading.getDate()));
+		String date = reading.getDate();
+		if(StringUtils.isEmpty(date)) {
+			record.setDate(new Timestamp(new GregorianCalendar(TimeZone.getTimeZone("EST")).getTimeInMillis()));
+		} else {
+			record.setDate(Timestamp.valueOf(date));
+		}
 		record.setHumidity(reading.getHumidity());
 		record.setId(reading.getId());
 		record.setMoisture(reading.getMoisture());

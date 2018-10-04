@@ -1,7 +1,8 @@
 package com.witt.monitree.delegate;
 
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +16,17 @@ import com.witt.monitree.repositories.ReadingRecordRepository;
 public class ReadingService {
 
 	private ReadingRecordRepository recordRepo;
+	private ReadingRecordMapper mapper;
+	
+	private SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss");
 
 	@Autowired
 	public ReadingService(
-	ReadingRecordRepository recordRepo) {
+	ReadingRecordRepository recordRepo, ReadingRecordMapper mapper) {
 		this.recordRepo = recordRepo;
+		this.mapper = mapper;
 	}
 	
-	ReadingRecordMapper mapper = new ReadingRecordMapper();
 	
 	public Reading save(Reading reading) {
 		return mapper.mapToReturnReading(recordRepo.save(mapper.mapToRecord(reading)));
@@ -33,18 +37,24 @@ public class ReadingService {
 	}
 
 	public List<Reading> getReadingsByQuery(String startDate, String endDate, String name) {
-		if (null == name) {
-			return getReadingsWithinDateRange(startDate, endDate);
+		try {
+			Timestamp startStamp = new Timestamp(format.parse(startDate).getTime());
+			Timestamp endStamp = new Timestamp(format.parse(endDate).getTime());
+			if (null == name) {
+				return getReadingsWithinDateRange(startStamp, endStamp);
+			}
+			return getReadingsWithDateRangeAndName(startStamp, endStamp, name);
+		} catch (ParseException e) {
+			throw new InternalError("There was an error parsing the input dates", e);
 		}
-		return getReadingsWithDateRangeAndName(startDate, endDate, name);
 	}
 
-	private List<Reading> getReadingsWithinDateRange(String startDate, String endDate) {
-		return mapper.mapRecordListToReturnList(recordRepo.findTopByDateBetweenOrderByDate(Timestamp.valueOf(startDate), Timestamp.valueOf(endDate)));
+	private List<Reading> getReadingsWithinDateRange(Timestamp startDate, Timestamp endDate) {
+		return mapper.mapRecordListToReturnList(recordRepo.findTopByDateBetweenOrderByDate(startDate, endDate));
 	}
 
-	private List<Reading> getReadingsWithDateRangeAndName(String startDate, String endDate, String name) {
-		return mapper.mapRecordListToReturnList(recordRepo.findTopByDateBetweenAndNameOrderByDate(Timestamp.valueOf(startDate), Timestamp.valueOf(endDate), name));
+	private List<Reading> getReadingsWithDateRangeAndName(Timestamp startDate, Timestamp endDate, String name) {
+		return mapper.mapRecordListToReturnList(recordRepo.findTopByDateBetweenAndNameOrderByDate(startDate, endDate, name));
 	}
 
 	public Reading getById(Long id) {
