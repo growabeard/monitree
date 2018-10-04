@@ -1,6 +1,5 @@
 package com.witt.monitree.repositories;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import org.springframework.data.repository.CrudRepository;
