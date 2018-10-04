@@ -8,8 +8,8 @@ import com.witt.monitree.entities.ReadingRecord;
 
 public interface ReadingRecordRepository extends CrudRepository<ReadingRecord, Long> {
 
-	Iterable<ReadingRecord> findTopByDateBetweenOrderByDate(Timestamp start, Timestamp stop);
+	Iterable<ReadingRecord> findAllByDateBetweenOrderByDate(Timestamp start, Timestamp stop);
 
-	Iterable<ReadingRecord> findTopByDateBetweenAndNameOrderByDate(Timestamp valueOf, Timestamp valueOf2, String name);
+	Iterable<ReadingRecord> findAllByDateBetweenAndNameOrderByDate(Timestamp valueOf, Timestamp valueOf2, String name);
 	
 }
