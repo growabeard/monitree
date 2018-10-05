@@ -20,7 +20,7 @@ public class ReadingRecordMapper {
 		record.setCreator(reading.getCreator().name());
 		String date = reading.getDate();
 		if(StringUtils.isEmpty(date)) {
-			record.setDate(new Timestamp(new GregorianCalendar(TimeZone.getTimeZone("EST")).getTimeInMillis()));
+			record.setDate(new Timestamp(System.currentTimeMillis()));
 		} else {
 			record.setDate(Timestamp.valueOf(date));
 		}
