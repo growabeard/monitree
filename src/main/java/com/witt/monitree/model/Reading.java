@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * Reading
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-09-02T14:42:09.252Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-10-10T08:47:27.764-04:00")
 
 public class Reading   {
   @JsonProperty("id")
@@ -32,7 +32,7 @@ public class Reading   {
    */
   public enum CreatorEnum {
     SENSOR("sensor"),
-    
+
     APP("app");
 
     private String value;
@@ -67,6 +67,9 @@ public class Reading   {
   @JsonProperty("humidity")
   private Double humidity = null;
 
+  @JsonProperty("light")
+  private Double light = null;
+
   @JsonProperty("watered")
   private Boolean watered = null;
 
@@ -75,10 +78,10 @@ public class Reading   {
     return this;
   }
 
-   /**
+  /**
    * the id of the reading
    * @return id
-  **/
+   **/
   @ApiModelProperty(value = "the id of the reading")
 
 
@@ -95,10 +98,10 @@ public class Reading   {
     return this;
   }
 
-   /**
+  /**
    * the name of the object source of the reading
    * @return name
-  **/
+   **/
   @ApiModelProperty(value = "the name of the object source of the reading")
 
 
@@ -115,10 +118,10 @@ public class Reading   {
     return this;
   }
 
-   /**
+  /**
    * the string representation of the date the reading was taken
    * @return date
-  **/
+   **/
   @ApiModelProperty(value = "the string representation of the date the reading was taken")
 
 
@@ -135,10 +138,10 @@ public class Reading   {
     return this;
   }
 
-   /**
+  /**
    * the temperature at the time of the reading, in fahrenheit
    * @return temp
-  **/
+   **/
   @ApiModelProperty(value = "the temperature at the time of the reading, in fahrenheit")
 
 
@@ -155,10 +158,10 @@ public class Reading   {
     return this;
   }
 
-   /**
+  /**
    * The origin of the reading.
    * @return creator
-  **/
+   **/
   @ApiModelProperty(value = "The origin of the reading.")
 
 
@@ -175,10 +178,10 @@ public class Reading   {
     return this;
   }
 
-   /**
+  /**
    * The level of moisture in the soil
    * @return moisture
-  **/
+   **/
   @ApiModelProperty(value = "The level of moisture in the soil")
 
 
@@ -195,10 +198,10 @@ public class Reading   {
     return this;
   }
 
-   /**
+  /**
    * The level of humidity in the air
    * @return humidity
-  **/
+   **/
   @ApiModelProperty(value = "The level of humidity in the air")
 
 
@@ -210,15 +213,35 @@ public class Reading   {
     this.humidity = humidity;
   }
 
+  public Reading light(Double light) {
+    this.light = light;
+    return this;
+  }
+
+  /**
+   * The light read from the sensor
+   * @return light
+   **/
+  @ApiModelProperty(value = "The light read from the sensor")
+
+
+  public Double getLight() {
+    return light;
+  }
+
+  public void setLight(Double light) {
+    this.light = light;
+  }
+
   public Reading watered(Boolean watered) {
     this.watered = watered;
     return this;
   }
 
-   /**
+  /**
    * Was the pump run?
    * @return watered
-  **/
+   **/
   @ApiModelProperty(value = "Was the pump run?")
 
 
@@ -241,25 +264,26 @@ public class Reading   {
     }
     Reading reading = (Reading) o;
     return Objects.equals(this.id, reading.id) &&
-        Objects.equals(this.name, reading.name) &&
-        Objects.equals(this.date, reading.date) &&
-        Objects.equals(this.temp, reading.temp) &&
-        Objects.equals(this.creator, reading.creator) &&
-        Objects.equals(this.moisture, reading.moisture) &&
-        Objects.equals(this.humidity, reading.humidity) &&
-        Objects.equals(this.watered, reading.watered);
+            Objects.equals(this.name, reading.name) &&
+            Objects.equals(this.date, reading.date) &&
+            Objects.equals(this.temp, reading.temp) &&
+            Objects.equals(this.creator, reading.creator) &&
+            Objects.equals(this.moisture, reading.moisture) &&
+            Objects.equals(this.humidity, reading.humidity) &&
+            Objects.equals(this.light, reading.light) &&
+            Objects.equals(this.watered, reading.watered);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, date, temp, creator, moisture, humidity, watered);
+    return Objects.hash(id, name, date, temp, creator, moisture, humidity, light, watered);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Reading {\n");
-    
+
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
@@ -267,6 +291,7 @@ public class Reading   {
     sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
     sb.append("    moisture: ").append(toIndentedString(moisture)).append("\n");
     sb.append("    humidity: ").append(toIndentedString(humidity)).append("\n");
+    sb.append("    light: ").append(toIndentedString(light)).append("\n");
     sb.append("    watered: ").append(toIndentedString(watered)).append("\n");
     sb.append("}");
     return sb.toString();

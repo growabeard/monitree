@@ -297,17 +297,22 @@ definitions:
         type: number
         format: double
         description: The level of humidity in the air
+      light:
+        type: number
+        format: double
+        description: The light read from the sensor
       watered:
         type: boolean
         description: Was the pump run?
     example:
       id: 1421
-      name: Tree
-      date: 2014-12-09T13:06:08.260+0000
+      name: 'tree'
+      date: '12-09-2017 13:06:08.260'
       temp: 70.0
-      creator: sensor
+      creator: 'sensor'
       moisture: 75.0
       humidity: 25.0
+      light: 80.0
       watered: false
   Error:
     type: object
