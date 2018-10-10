@@ -43,6 +43,9 @@ public class ReadingRecord implements Serializable {
 	@Column (name = "humidity")
 	private Double humidity;
 
+	@Column (name = "light")
+	private Double light;
+
 	@Column (name = "watered")
 	private Boolean watered;
 	
@@ -112,6 +115,14 @@ public class ReadingRecord implements Serializable {
 
 	public void setWatered(Boolean watered) {
 		this.watered = watered;
+	}
+
+	public Double getLight() {
+		return light;
+	}
+
+	public void setLight(Double light) {
+		this.light = light;
 	}
 
 }

@@ -1,16 +1,13 @@
 package com.witt.monitree.mapper;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.TimeZone;
-
+import com.witt.monitree.entities.ReadingRecord;
+import com.witt.monitree.model.Reading;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.witt.monitree.entities.ReadingRecord;
-import com.witt.monitree.model.Reading;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class ReadingRecordMapper {
@@ -28,6 +25,7 @@ public class ReadingRecordMapper {
 		record.setId(reading.getId());
 		record.setMoisture(reading.getMoisture());
 		record.setName(reading.getName());
+		record.setLight(reading.getLight());
 		record.setTemp(reading.getTemp());
 		record.setWatered(reading.getWatered());
 		return record;
@@ -41,6 +39,7 @@ public class ReadingRecordMapper {
 		reading.setId(save.getId());
 		reading.setMoisture(save.getMoisture());
 		reading.setTemp(save.getTemp());
+		reading.setLight(save.getLight());
 		reading.setName(save.getName());
 		reading.setWatered(save.getWatered());
 		return reading;
