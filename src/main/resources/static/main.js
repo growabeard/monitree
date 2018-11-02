@@ -1390,8 +1390,8 @@ var MonitreeService = /** @class */ (function () {
     MonitreeService.prototype.getMonitreeReadings = function (start, end) {
         console.log(start);
         console.log(end);
-        return this.http.get(location.origin + '/monitree/v1/readings?startDate=10-01-2018%2000%3A00%3A00&endDate=11-20-2018%2000%3A00%3A00', {
-            // return this.http.get(location.origin + '/monitree/v1/readings?startDate=' + start + '&endDate=' + end, {
+        return this.http.get(location.origin + '/readings?startDate=10-01-2018%2000%3A00%3A00&endDate=11-20-2018%2000%3A00%3A00', {
+            // return this.http.get(location.origin + '/readings?startDate=' + start + '&endDate=' + end, {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
                 'Content-Type': 'application/json'
             })
