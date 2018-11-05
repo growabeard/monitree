@@ -453,15 +453,15 @@ var AppComponent = /** @class */ (function () {
         this.monitreeService.getMonitreeReadings(this.start, this.end).subscribe(function (data) {
             _this.readings = data;
             //this.readings = READINGS;
+            _this.readings.forEach(function (reading) {
+                _this.temperatures.data.push(reading.temp);
+                _this.moistures.data.push(reading.moisture);
+                _this.lights.data.push(reading.light);
+                _this.humidities.data.push(reading.humidity);
+                _this.tsLabels.push(reading.date);
+            });
+            _this.chart.chart.update();
         }, function (err) { return console.error(err); });
-        this.readings.forEach(function (reading) {
-            _this.temperatures.data.push(reading.temp);
-            _this.moistures.data.push(reading.moisture);
-            _this.lights.data.push(reading.light);
-            _this.humidities.data.push(reading.humidity);
-            _this.tsLabels.push(reading.date);
-        });
-        this.chart.chart.update();
     };
     AppComponent.prototype.updateStart = function (event) {
         this.start = event.value;
