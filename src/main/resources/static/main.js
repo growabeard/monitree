@@ -346,7 +346,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <mat-form-field>\n    <input matInput [matDatepicker]=\"picker1\" placeholder=\"Choose a start date\"\n    (dateChange)=\"updateStart($event)\" [value]=\"start\">\n    <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n    <mat-datepicker #picker1 [startAt]=\"startDate\"></mat-datepicker>\n  </mat-form-field>\n  \n  <mat-form-field>\n    <input matInput [matDatepicker]=\"picker2\" placeholder=\"Choose an end date\"\n    [value]=\"end\">\n    <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n    <mat-datepicker #picker2 [startAt]=\"endDate\"></mat-datepicker>\n  </mat-form-field>\n  <button (click)=\"getMonitreeReadings()\">BUNGUS</button>\n<canvas baseChart width=\"400\" height=\"400\"\n[datasets]=\"lineChartData\"\n[labels]=\"tsLabels\"\n[options]=\"lineChartOptions\"\n[legend]=\"lineChartLegend\"\n[chartType]=\"lineChartType\"></canvas>\n<div style=\"margin-bottom: 10px; margin-left: 5em;\">\n  <table class=\"table table-responsive table-condensed\">\n    <tr>\n      <th class=\"headcol\"></th><td *ngFor=\"let label of tsLabels\">{{label}}</td>\n    </tr>\n    <tr *ngFor=\"let d of lineChartData\">\n      <th class=\"headcol\">{{d.label}}</th><td *ngFor=\"let label of tsLabels; let j=index\">{{d && d.data[j]}}</td>\n    </tr>\n  </table>\n</div>\n\n<router-outlet></router-outlet>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <mat-form-field>\n    <input matInput [matDatepicker]=\"picker1\" placeholder=\"Choose a start date\"\n    (dateChange)=\"updateStart($event)\" [value]=\"start\">\n    <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n    <mat-datepicker #picker1 [startAt]=\"startDate\"></mat-datepicker>\n  </mat-form-field>\n  \n  <mat-form-field>\n    <input matInput [matDatepicker]=\"picker2\" placeholder=\"Choose an end date\"\n    [value]=\"end\">\n    <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n    <mat-datepicker #picker2 [startAt]=\"endDate\"></mat-datepicker>\n  </mat-form-field>\n  <button (click)=\"getMonitreeReadings()\">BUNGUS</button>\n<canvas baseChart width=\"400\"\n[datasets]=\"lineChartData\"\n[labels]=\"tsLabels\"\n[options]=\"lineChartOptions\"\n[legend]=\"lineChartLegend\"\n[chartType]=\"lineChartType\"></canvas>\n<div style=\"margin-bottom: 10px; margin-left: 5em;\">\n  <table class=\"table table-responsive table-condensed\">\n    <tr>\n      <th class=\"headcol\"></th><td *ngFor=\"let label of tsLabels\">{{label}}</td>\n    </tr>\n    <tr *ngFor=\"let d of lineChartData\">\n      <th class=\"headcol\">{{d.label}}</th><td *ngFor=\"let label of tsLabels; let j=index\">{{d && d.data[j]}}</td>\n    </tr>\n  </table>\n</div>\n\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -375,7 +375,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/index.js");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(ng2_charts__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _services_monitree_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/monitree.service */ "./src/app/services/monitree.service.ts");
-/* harmony import */ var _shared_models_graphable_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/models/graphable.model */ "./src/app/shared/models/graphable.model.ts");
+/* harmony import */ var _mock_readings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mock-readings */ "./src/app/mock-readings.ts");
+/* harmony import */ var _shared_models_graphable_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shared/models/graphable.model */ "./src/app/shared/models/graphable.model.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -390,14 +391,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var AppComponent = /** @class */ (function () {
     function AppComponent(monitreeService) {
         this.monitreeService = monitreeService;
         this.title = 'monitree-front';
-        this.temperatures = new _shared_models_graphable_model__WEBPACK_IMPORTED_MODULE_3__["Graphable"]();
-        this.moistures = new _shared_models_graphable_model__WEBPACK_IMPORTED_MODULE_3__["Graphable"]();
-        this.lights = new _shared_models_graphable_model__WEBPACK_IMPORTED_MODULE_3__["Graphable"]();
-        this.humidities = new _shared_models_graphable_model__WEBPACK_IMPORTED_MODULE_3__["Graphable"]();
+        this.temperatures = new _shared_models_graphable_model__WEBPACK_IMPORTED_MODULE_4__["Graphable"]();
+        this.moistures = new _shared_models_graphable_model__WEBPACK_IMPORTED_MODULE_4__["Graphable"]();
+        this.lights = new _shared_models_graphable_model__WEBPACK_IMPORTED_MODULE_4__["Graphable"]();
+        this.humidities = new _shared_models_graphable_model__WEBPACK_IMPORTED_MODULE_4__["Graphable"]();
         this.start = new Date();
         this.end = new Date();
         this.lineChartData = [
@@ -407,7 +409,8 @@ var AppComponent = /** @class */ (function () {
             this.humidities
         ];
         this.lineChartOptions = {
-            responsive: true
+            responsive: true,
+            maintainAspectRatio: false
         };
         this.lineChartColors = [
             {
@@ -451,8 +454,8 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.getMonitreeReadings = function () {
         var _this = this;
         this.monitreeService.getMonitreeReadings(this.start, this.end).subscribe(function (data) {
-            _this.readings = data;
-            //this.readings = READINGS;
+            // this.readings = data;
+            _this.readings = _mock_readings__WEBPACK_IMPORTED_MODULE_3__["READINGS"];
             _this.readings.forEach(function (reading) {
                 _this.temperatures.data.push(reading.temp);
                 _this.moistures.data.push(reading.moisture);
@@ -574,6 +577,781 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/mock-readings.ts":
+/*!**********************************!*\
+  !*** ./src/app/mock-readings.ts ***!
+  \**********************************/
+/*! exports provided: READINGS */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "READINGS", function() { return READINGS; });
+var READINGS = [
+    {
+        "id": 4,
+        "name": "tree",
+        "date": "2018-09-03 18:29:00.0",
+        "temp": 79.23,
+        "creator": "sensor",
+        "moisture": 57.21,
+        "humidity": 77.21,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 2,
+        "name": "tree",
+        "date": "2018-09-03 21:48:13.58",
+        "temp": 79.23,
+        "creator": "app",
+        "moisture": 57.21,
+        "humidity": 77.21,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 3,
+        "name": "tree",
+        "date": "2018-09-03 21:48:53.304",
+        "temp": 79.23,
+        "creator": "sensor",
+        "moisture": 57.21,
+        "humidity": 77.21,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 5,
+        "name": "tree",
+        "date": "2018-10-03 11:59:00.0",
+        "temp": 77.23,
+        "creator": "sensor",
+        "moisture": 24.21,
+        "humidity": 50.21,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 6,
+        "name": "tree",
+        "date": "2018-10-03 12:00:00.0",
+        "temp": 77.23,
+        "creator": "sensor",
+        "moisture": 24.21,
+        "humidity": 50.21,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 7,
+        "name": "tree",
+        "date": "2018-10-03 12:00:00.0",
+        "temp": 77.23,
+        "creator": "sensor",
+        "moisture": 24.21,
+        "humidity": 50.21,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 8,
+        "name": "tree",
+        "date": "2018-10-05 15:16:15.944",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 0,
+        "humidity": 41,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 9,
+        "name": "tree",
+        "date": "2018-10-05 15:22:11.201",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 665,
+        "humidity": 42,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 10,
+        "name": "tree",
+        "date": "2018-10-05 15:23:42.28",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 98,
+        "humidity": 42,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 11,
+        "name": "tree",
+        "date": "2018-10-05 15:28:49.948",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 35,
+        "humidity": 42,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 12,
+        "name": "tree",
+        "date": "2018-10-05 15:40:50.368",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 36,
+        "humidity": 42,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 13,
+        "name": "tree",
+        "date": "2018-10-05 15:43:42.377",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 35,
+        "humidity": 42,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 14,
+        "name": "tree",
+        "date": "2018-10-05 15:54:46.704",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 38,
+        "humidity": 41,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 15,
+        "name": "tree",
+        "date": "2018-10-05 16:04:48.957",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 94,
+        "humidity": 42,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 16,
+        "name": "tree",
+        "date": "2018-10-05 16:06:42.315",
+        "temp": 78.8,
+        "creator": "sensor",
+        "moisture": 94,
+        "humidity": 41,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 17,
+        "name": "tree",
+        "date": "2018-10-05 16:07:10.254",
+        "temp": 80.6,
+        "creator": "sensor",
+        "moisture": 629,
+        "humidity": 39,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 18,
+        "name": "tree",
+        "date": "2018-10-05 16:08:49.236",
+        "temp": 80.6,
+        "creator": "sensor",
+        "moisture": 100,
+        "humidity": 38,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 19,
+        "name": "tree",
+        "date": "2018-10-05 16:18:56.519",
+        "temp": 80.6,
+        "creator": "sensor",
+        "moisture": 100,
+        "humidity": 38,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 20,
+        "name": "tree",
+        "date": "2018-10-05 16:29:04.695",
+        "temp": 80.6,
+        "creator": "sensor",
+        "moisture": 100,
+        "humidity": 37,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 21,
+        "name": "tree",
+        "date": "2018-10-09 12:51:03.109",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 105,
+        "humidity": 45,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 22,
+        "name": "tree",
+        "date": "2018-10-09 12:52:25.364",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 104,
+        "humidity": 44,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 23,
+        "name": "tree",
+        "date": "2018-10-09 12:53:59.746",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 104,
+        "humidity": 43,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 24,
+        "name": "tree",
+        "date": "2018-10-09 12:57:24.777",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 99,
+        "humidity": 43,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 25,
+        "name": "tree",
+        "date": "2018-10-09 13:57:36.349",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 99,
+        "humidity": 42,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 26,
+        "name": "tree",
+        "date": "2018-10-09 14:57:46.434",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 99,
+        "humidity": 42,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 27,
+        "name": "tree",
+        "date": "2018-10-09 16:03:07.555",
+        "temp": 75.2,
+        "creator": "sensor",
+        "moisture": 99,
+        "humidity": 46,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 28,
+        "name": "tree",
+        "date": "2018-10-09 16:28:55.106",
+        "temp": 75.2,
+        "creator": "sensor",
+        "moisture": 90,
+        "humidity": 46,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 29,
+        "name": "tree",
+        "date": "2018-10-10 09:18:23.362",
+        "temp": 75.2,
+        "creator": "sensor",
+        "moisture": 97,
+        "humidity": 47,
+        "light": 76,
+        "watered": false
+    },
+    {
+        "id": 30,
+        "name": "tree",
+        "date": "2018-10-10 09:36:23.862",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 89,
+        "humidity": 45,
+        "light": 76,
+        "watered": false
+    },
+    {
+        "id": 31,
+        "name": "tree",
+        "date": "2018-10-10 10:36:58.158",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 90,
+        "humidity": 44,
+        "light": 74,
+        "watered": false
+    },
+    {
+        "id": 32,
+        "name": "tree",
+        "date": "2018-10-10 11:53:45.324",
+        "temp": 73.4,
+        "creator": "sensor",
+        "moisture": 89,
+        "humidity": 50,
+        "light": 82,
+        "watered": false
+    },
+    {
+        "id": 33,
+        "name": "tree",
+        "date": "2018-10-10 13:02:52.558",
+        "temp": 73.4,
+        "creator": "sensor",
+        "moisture": 89,
+        "humidity": 51,
+        "light": 75,
+        "watered": false
+    },
+    {
+        "id": 34,
+        "name": "tree",
+        "date": "2018-10-10 19:44:23.794",
+        "temp": 75.2,
+        "creator": "sensor",
+        "moisture": 0,
+        "humidity": 55,
+        "light": 62,
+        "watered": false
+    },
+    {
+        "id": 35,
+        "name": "tree",
+        "date": "2018-10-10 21:56:59.295",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 0,
+        "humidity": 52,
+        "light": 53,
+        "watered": false
+    },
+    {
+        "id": 36,
+        "name": "tree",
+        "date": "2018-10-10 21:57:19.523",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 0,
+        "humidity": 52,
+        "light": 54,
+        "watered": false
+    },
+    {
+        "id": 37,
+        "name": "tree",
+        "date": "2018-10-16 09:28:14.848",
+        "temp": 78.8,
+        "creator": "sensor",
+        "moisture": 51,
+        "humidity": 20,
+        "light": 70,
+        "watered": false
+    },
+    {
+        "id": 38,
+        "name": "tree",
+        "date": "2018-10-16 09:29:15.542",
+        "temp": 78.8,
+        "creator": "sensor",
+        "moisture": 38,
+        "humidity": 19,
+        "light": 75,
+        "watered": false
+    },
+    {
+        "id": 70,
+        "name": "tree",
+        "date": "2018-10-24 16:12:17.369",
+        "temp": 77.23,
+        "creator": "sensor",
+        "moisture": 24.21,
+        "humidity": 50.21,
+        "light": null,
+        "watered": false
+    },
+    {
+        "id": 71,
+        "name": "tree",
+        "date": "2018-10-30 13:16:51.118",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 77,
+        "humidity": 77,
+        "light": 77,
+        "watered": false
+    },
+    {
+        "id": 72,
+        "name": "tree",
+        "date": "2018-11-01 09:00:01.874",
+        "temp": 71.6,
+        "creator": "sensor",
+        "moisture": 58,
+        "humidity": 43,
+        "light": 66,
+        "watered": false
+    },
+    {
+        "id": 73,
+        "name": "tree",
+        "date": "2018-11-01 10:00:40.204",
+        "temp": 71.6,
+        "creator": "sensor",
+        "moisture": 60,
+        "humidity": 41,
+        "light": 69,
+        "watered": false
+    },
+    {
+        "id": 74,
+        "name": "tree",
+        "date": "2018-11-01 11:00:56.623",
+        "temp": 75.2,
+        "creator": "sensor",
+        "moisture": 61,
+        "humidity": 36,
+        "light": 72,
+        "watered": false
+    },
+    {
+        "id": 75,
+        "name": "tree",
+        "date": "2018-11-01 12:02:12.621",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 61,
+        "humidity": 34,
+        "light": 69,
+        "watered": false
+    },
+    {
+        "id": 76,
+        "name": "tree",
+        "date": "2018-11-01 13:02:04.188",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 60,
+        "humidity": 31,
+        "light": 67,
+        "watered": false
+    },
+    {
+        "id": 77,
+        "name": "tree",
+        "date": "2018-11-01 14:01:49.519",
+        "temp": 75.2,
+        "creator": "sensor",
+        "moisture": 60,
+        "humidity": 33,
+        "light": 70,
+        "watered": false
+    },
+    {
+        "id": 78,
+        "name": "tree",
+        "date": "2018-11-01 15:02:35.763",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 60,
+        "humidity": 32,
+        "light": 69,
+        "watered": false
+    },
+    {
+        "id": 79,
+        "name": "tree",
+        "date": "2018-11-01 16:02:16.325",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 60,
+        "humidity": 31,
+        "light": 68,
+        "watered": false
+    },
+    {
+        "id": 80,
+        "name": "tree",
+        "date": "2018-11-01 17:03:05.295",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 54,
+        "humidity": 30,
+        "light": 84,
+        "watered": false
+    },
+    {
+        "id": 81,
+        "name": "tree",
+        "date": "2018-11-01 18:02:58.637",
+        "temp": 77,
+        "creator": "sensor",
+        "moisture": 54,
+        "humidity": 30,
+        "light": 79,
+        "watered": false
+    },
+    {
+        "id": 83,
+        "name": "tree",
+        "date": "2018-11-01 19:03:45.691",
+        "temp": 75.2,
+        "creator": "sensor",
+        "moisture": 54,
+        "humidity": 32,
+        "light": 0,
+        "watered": false
+    },
+    {
+        "id": 82,
+        "name": "tree",
+        "date": "2018-11-01 19:03:45.704",
+        "temp": 75.2,
+        "creator": "sensor",
+        "moisture": 54,
+        "humidity": 32,
+        "light": 0,
+        "watered": false
+    },
+    {
+        "id": 84,
+        "name": "tree",
+        "date": "2018-11-01 20:03:22.65",
+        "temp": 71.6,
+        "creator": "sensor",
+        "moisture": 52,
+        "humidity": 37,
+        "light": 0,
+        "watered": false
+    },
+    {
+        "id": 85,
+        "name": "tree",
+        "date": "2018-11-01 21:03:35.231",
+        "temp": 71.6,
+        "creator": "sensor",
+        "moisture": 53,
+        "humidity": 38,
+        "light": 0,
+        "watered": false
+    },
+    {
+        "id": 86,
+        "name": "tree",
+        "date": "2018-11-01 22:03:55.898",
+        "temp": 69.8,
+        "creator": "sensor",
+        "moisture": 52,
+        "humidity": 38,
+        "light": 82,
+        "watered": false
+    },
+    {
+        "id": 87,
+        "name": "tree",
+        "date": "2018-11-01 23:04:25.652",
+        "temp": 69.8,
+        "creator": "sensor",
+        "moisture": 52,
+        "humidity": 39,
+        "light": 0,
+        "watered": false
+    },
+    {
+        "id": 88,
+        "name": "tree",
+        "date": "2018-11-02 00:04:21.136",
+        "temp": 69.8,
+        "creator": "sensor",
+        "moisture": 52,
+        "humidity": 39,
+        "light": 0,
+        "watered": false
+    },
+    {
+        "id": 89,
+        "name": "tree",
+        "date": "2018-11-02 01:04:43.789",
+        "temp": 68,
+        "creator": "sensor",
+        "moisture": 51,
+        "humidity": 39,
+        "light": 0,
+        "watered": false
+    },
+    {
+        "id": 90,
+        "name": "tree",
+        "date": "2018-11-02 02:05:08.598",
+        "temp": 68,
+        "creator": "sensor",
+        "moisture": 51,
+        "humidity": 39,
+        "light": 0,
+        "watered": false
+    },
+    {
+        "id": 91,
+        "name": "tree",
+        "date": "2018-11-02 03:05:21.961",
+        "temp": 68,
+        "creator": "sensor",
+        "moisture": 51,
+        "humidity": 40,
+        "light": 0,
+        "watered": false
+    },
+    {
+        "id": 92,
+        "name": "tree",
+        "date": "2018-11-02 04:05:33.471",
+        "temp": 68,
+        "creator": "sensor",
+        "moisture": 51,
+        "humidity": 40,
+        "light": 0,
+        "watered": false
+    },
+    {
+        "id": 93,
+        "name": "tree",
+        "date": "2018-11-02 05:05:41.77",
+        "temp": 68,
+        "creator": "sensor",
+        "moisture": 51,
+        "humidity": 40,
+        "light": 0,
+        "watered": false
+    },
+    {
+        "id": 94,
+        "name": "tree",
+        "date": "2018-11-02 06:06:02.526",
+        "temp": 68,
+        "creator": "sensor",
+        "moisture": 51,
+        "humidity": 40,
+        "light": 76,
+        "watered": false
+    },
+    {
+        "id": 95,
+        "name": "tree",
+        "date": "2018-11-02 07:06:22.898",
+        "temp": 68,
+        "creator": "sensor",
+        "moisture": 51,
+        "humidity": 40,
+        "light": 76,
+        "watered": false
+    },
+    {
+        "id": 96,
+        "name": "tree",
+        "date": "2018-11-02 08:07:04.694",
+        "temp": 68,
+        "creator": "sensor",
+        "moisture": 52,
+        "humidity": 39,
+        "light": 82,
+        "watered": false
+    },
+    {
+        "id": 97,
+        "name": "tree",
+        "date": "2018-11-02 08:07:04.719",
+        "temp": 68,
+        "creator": "sensor",
+        "moisture": 52,
+        "humidity": 39,
+        "light": 82,
+        "watered": false
+    },
+    {
+        "id": 98,
+        "name": "tree",
+        "date": "2018-11-02 09:07:25.914",
+        "temp": 73.4,
+        "creator": "sensor",
+        "moisture": 53,
+        "humidity": 35,
+        "light": 85,
+        "watered": false
+    },
+    {
+        "id": 99,
+        "name": "tree",
+        "date": "2018-11-02 09:07:27.087",
+        "temp": 73.4,
+        "creator": "sensor",
+        "moisture": 53,
+        "humidity": 35,
+        "light": 85,
+        "watered": false
+    },
+    {
+        "id": 100,
+        "name": "tree",
+        "date": "2018-11-02 10:06:59.814",
+        "temp": 75.2,
+        "creator": "sensor",
+        "moisture": 52,
+        "humidity": 32,
+        "light": 84,
+        "watered": false
+    },
+    {
+        "id": 101,
+        "name": "tree",
+        "date": "2018-11-02 11:06:54.709",
+        "temp": 75.2,
+        "creator": "sensor",
+        "moisture": 53,
+        "humidity": 32,
+        "light": 87,
+        "watered": false
+    }
+];
+
+
+/***/ }),
+
 /***/ "./src/app/services/monitree.service.ts":
 /*!**********************************************!*\
   !*** ./src/app/services/monitree.service.ts ***!
@@ -610,14 +1388,25 @@ var MonitreeService = /** @class */ (function () {
     MonitreeService.prototype.getMonitreeModel = function () { return this.monitreeModel; };
     MonitreeService.prototype.setMonitreeModel = function (data) { this.monitreeModel = data; };
     MonitreeService.prototype.getMonitreeReadings = function (start, end) {
+        start = this.getDateTimeFormat(start);
+        end = this.getDateTimeFormat(end);
         console.log(start);
         console.log(end);
-        return this.http.get(location.origin + '/readings?startDate=10-01-2018%2000%3A00%3A00&endDate=11-20-2018%2000%3A00%3A00', {
-            // return this.http.get(location.origin + '/readings?startDate=' + start + '&endDate=' + end, {
+        // return this.http.get(location.origin + '/readings?startDate=10-01-2018%2000%3A00%3A00&endDate=11-20-2018%2000%3A00%3A00', {
+        return this.http.get(location.origin + '/readings?startDate=' + start + '&endDate=' + end, {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
                 'Content-Type': 'application/json'
             })
         });
+    };
+    MonitreeService.prototype.getDateTimeFormat = function (inDate) {
+        // want format like 10-01-2018 00:00:00
+        var returnDate = '';
+        var date = inDate.getDate();
+        var month = inDate.getMonth() + 1;
+        var year = inDate.getFullYear();
+        returnDate = month + '-' + date + '-' + year + ' 00:00:00';
+        return encodeURIComponent(returnDate);
     };
     MonitreeService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
