@@ -346,7 +346,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <mat-form-field>\n    <input matInput [matDatepicker]=\"picker1\" placeholder=\"Choose a start date\"\n    (dateChange)=\"updateStart($event)\" [value]=\"start\">\n    <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n    <mat-datepicker #picker1 [startAt]=\"startDate\"></mat-datepicker>\n  </mat-form-field>\n  \n  <mat-form-field>\n    <input matInput [matDatepicker]=\"picker2\" placeholder=\"Choose an end date\"\n    [value]=\"end\">\n    <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n    <mat-datepicker #picker2 [startAt]=\"endDate\"></mat-datepicker>\n  </mat-form-field>\n  <button (click)=\"getMonitreeReadings()\">BUNGUS</button>\n<canvas baseChart width=\"400\"\n[datasets]=\"lineChartData\"\n[labels]=\"tsLabels\"\n[options]=\"lineChartOptions\"\n[legend]=\"lineChartLegend\"\n[chartType]=\"lineChartType\"></canvas>\n<div style=\"margin-bottom: 10px; margin-left: 5em;\">\n  <table class=\"table table-responsive table-condensed\">\n    <tr>\n      <th class=\"headcol\"></th><td *ngFor=\"let label of tsLabels\">{{label}}</td>\n    </tr>\n    <tr *ngFor=\"let d of lineChartData\">\n      <th class=\"headcol\">{{d.label}}</th><td *ngFor=\"let label of tsLabels; let j=index\">{{d && d.data[j]}}</td>\n    </tr>\n  </table>\n</div>\n\n<router-outlet></router-outlet>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <mat-form-field>\n    <input matInput [matDatepicker]=\"picker1\" placeholder=\"Choose a start date\"\n    (dateChange)=\"updateStart($event)\" [value]=\"start\">\n    <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n    <mat-datepicker #picker1 [startAt]=\"startDate\"></mat-datepicker>\n  </mat-form-field>\n  \n  <mat-form-field>\n    <input matInput [matDatepicker]=\"picker2\" placeholder=\"Choose an end date\"\n    [value]=\"end\">\n    <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n    <mat-datepicker #picker2 [startAt]=\"endDate\"></mat-datepicker>\n  </mat-form-field>\n  <button (click)=\"getMonitreeReadings()\">BUNGUS</button>\n<canvas baseChart height=\"80vw\"\n[datasets]=\"lineChartData\"\n[labels]=\"tsLabels\"\n[options]=\"lineChartOptions\"\n[legend]=\"lineChartLegend\"\n[chartType]=\"lineChartType\"></canvas>\n<div style=\"margin-bottom: 10px; margin-left: 5em;\">\n  <table class=\"table table-responsive table-condensed\">\n    <tr>\n      <th class=\"headcol\"></th><td *ngFor=\"let label of tsLabels\">{{label}}</td>\n    </tr>\n    <tr *ngFor=\"let d of lineChartData\">\n      <th [style]=\"getStyle()\" class=\"headcol\">{{d.label}}</th><td [style]=\"getStyle()\" *ngFor=\"let label of tsLabels; let j=index\">{{d && d.data[j]}}</td>\n    </tr>\n  </table>\n</div>\n\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -408,7 +408,15 @@ var AppComponent = /** @class */ (function () {
         ];
         this.lineChartOptions = {
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: true,
+            scales: {
+                xAxes: [{
+                        ticks: {
+                            display: false
+                        }
+                    }
+                ]
+            }
         };
         this.lineChartColors = [
             {
@@ -453,6 +461,7 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         this.monitreeService.getMonitreeReadings(this.start, this.end).subscribe(function (data) {
             _this.readings = data;
+            // this.readings = READINGS;
             _this.temperatures.data = [];
             _this.moistures.data = [];
             _this.lights.data = [];
@@ -467,6 +476,9 @@ var AppComponent = /** @class */ (function () {
             });
             _this.chart.chart.update();
         }, function (err) { return console.error(err); });
+    };
+    AppComponent.prototype.getStyle = function (butts) {
+        console.log(butts);
     };
     AppComponent.prototype.updateStart = function (event) {
         this.start = event.value;
@@ -617,9 +629,6 @@ var MonitreeService = /** @class */ (function () {
     MonitreeService.prototype.getMonitreeReadings = function (start, end) {
         start = this.getDateTimeFormat(start);
         end = this.getDateTimeFormat(end);
-        console.log(start);
-        console.log(end);
-        // return this.http.get(location.origin + '/readings?startDate=10-01-2018%2000%3A00%3A00&endDate=11-20-2018%2000%3A00%3A00', {
         return this.http.get(location.origin + '/readings?startDate=' + start + '&endDate=' + end, {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
                 'Content-Type': 'application/json'
