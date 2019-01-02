@@ -357,7 +357,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".headcol {\n  position: absolute;\n  width: 5em;\n  left: 0;\n  top: auto;\n  border-top-width: 0px;\n  /*only relevant for first row*/\n  margin-top: -1px;\n  /*compensate for top border*/ }\n\ntd {\n  margin: 0;\n  border: 0px solid grey;\n  border-top-width: 0px;\n  white-space: nowrap; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2dnaXMvcHJvamVjdHMvdGVzdC1wcm9qZWN0cy9tb25pdHJlZS1mcm9udC9zcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLG1CQUFrQjtFQUNsQixXQUFVO0VBQ1YsUUFBTztFQUNQLFVBQVM7RUFDVCxzQkFBcUI7RUFDckIsK0JBQStCO0VBQy9CLGlCQUFnQjtFQUNoQiw2QkFBNkIsRUFDOUI7O0FBQ0Q7RUFDRSxVQUFRO0VBQ1IsdUJBQXFCO0VBQ3JCLHNCQUFvQjtFQUNwQixvQkFBa0IsRUFDckIiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGVhZGNvbCB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHdpZHRoOiA1ZW07XG4gICAgbGVmdDogMDtcbiAgICB0b3A6IGF1dG87XG4gICAgYm9yZGVyLXRvcC13aWR0aDogMHB4O1xuICAgIC8qb25seSByZWxldmFudCBmb3IgZmlyc3Qgcm93Ki9cbiAgICBtYXJnaW4tdG9wOiAtMXB4O1xuICAgIC8qY29tcGVuc2F0ZSBmb3IgdG9wIGJvcmRlciovXG4gIH1cbiAgdGQge1xuICAgIG1hcmdpbjowO1xuICAgIGJvcmRlcjowcHggc29saWQgZ3JleTsgXG4gICAgYm9yZGVyLXRvcC13aWR0aDowcHg7IFxuICAgIHdoaXRlLXNwYWNlOm5vd3JhcDtcbn0iXX0= */"
+module.exports = ".headcol {\n  position: absolute;\n  width: 5em;\n  left: 0;\n  top: auto;\n  border-top-width: 0px;\n  /*only relevant for first row*/\n  margin-top: -1px;\n  /*compensate for top border*/ }\n\ntd {\n  margin: 0;\n  border: 0px solid grey;\n  border-top-width: 0px;\n  white-space: nowrap; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3ZhZ3JhbnQvcHJvamVjdHMvdGVzdC1wcm9qZWN0cy9tb25pdHJlZS1mcm9udC9zcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLG1CQUFrQjtFQUNsQixXQUFVO0VBQ1YsUUFBTztFQUNQLFVBQVM7RUFDVCxzQkFBcUI7RUFDckIsK0JBQStCO0VBQy9CLGlCQUFnQjtFQUNoQiw2QkFBNkIsRUFDOUI7O0FBQ0Q7RUFDRSxVQUFRO0VBQ1IsdUJBQXFCO0VBQ3JCLHNCQUFvQjtFQUNwQixvQkFBa0IsRUFDckIiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGVhZGNvbCB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHdpZHRoOiA1ZW07XG4gICAgbGVmdDogMDtcbiAgICB0b3A6IGF1dG87XG4gICAgYm9yZGVyLXRvcC13aWR0aDogMHB4O1xuICAgIC8qb25seSByZWxldmFudCBmb3IgZmlyc3Qgcm93Ki9cbiAgICBtYXJnaW4tdG9wOiAtMXB4O1xuICAgIC8qY29tcGVuc2F0ZSBmb3IgdG9wIGJvcmRlciovXG4gIH1cbiAgdGQge1xuICAgIG1hcmdpbjowO1xuICAgIGJvcmRlcjowcHggc29saWQgZ3JleTsgXG4gICAgYm9yZGVyLXRvcC13aWR0aDowcHg7IFxuICAgIHdoaXRlLXNwYWNlOm5vd3JhcDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -416,7 +416,13 @@ var AppComponent = /** @class */ (function () {
                         }
                     }
                 ]
-            }
+            },
+            tooltips: {
+                mode: 'label',
+            },
+            hover: {
+                mode: 'label'
+            },
         };
         this.lineChartColors = [
             {
@@ -448,14 +454,22 @@ var AppComponent = /** @class */ (function () {
         this.lineChartType = 'line';
         this.temperatures.label = 'Temp';
         this.temperatures.data = [];
+        this.temperatures.fill = false;
+        this.temperatures.pointRadius = 0;
         this.moistures.label = 'Moisture';
         this.moistures.data = [];
+        this.moistures.fill = false;
+        this.moistures.pointRadius = 0;
         this.lights.label = 'Light';
         this.lights.data = [];
+        this.lights.fill = false;
+        this.lights.pointRadius = 0;
         this.humidities.label = 'Humidity';
         this.humidities.data = [];
+        this.humidities.fill = false;
+        this.humidities.pointRadius = 0;
         this.tsLabels = [];
-        this.start.setDate(this.start.getDate() - 7);
+        this.start.setDate(this.start.getDate() - 3);
         this.end.setDate(this.end.getDate() + 1);
         this.watered = [];
     }
@@ -757,7 +771,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/ggis/projects/test-projects/monitree-front/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/vagrant/projects/test-projects/monitree-front/src/main.ts */"./src/main.ts");
 
 
 /***/ })
