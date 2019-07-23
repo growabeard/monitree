@@ -33,7 +33,7 @@ public class ReadingService {
 	}
 
 	public void delete(Long id) {
-		recordRepo.delete(id);		
+		recordRepo.deleteById(id);		
 	}
 
 	public List<Reading> getReadingsByQuery(String startDate, String endDate, String name) {
@@ -58,7 +58,7 @@ public class ReadingService {
 	}
 
 	public Reading getById(Long id) {
-		return mapper.mapToReturnReading(recordRepo.findOne(id));
+		return mapper.mapToReturnReading(recordRepo.findById(id));
 	}
 
 	public Reading updateById(Long id, Reading reading) {

@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ReadingRecordMapper {
@@ -31,18 +32,11 @@ public class ReadingRecordMapper {
 		return record;
 	}
 
-	public Reading mapToReturnReading(ReadingRecord save) {
-		Reading reading = new Reading();
-		reading.setCreator(Reading.CreatorEnum.valueOf(save.getCreator()));
-		reading.setDate(save.getDate().toString());
-		reading.setHumidity(save.getHumidity());
-		reading.setId(save.getId());
-		reading.setMoisture(save.getMoisture());
-		reading.setTemp(save.getTemp());
-		reading.setLight(save.getLight());
-		reading.setName(save.getName());
-		reading.setWatered(save.getWatered());
-		return reading;
+	public Reading mapToReturnReading(Optional<ReadingRecord> optional) {
+		if(optional.isPresent()) {
+			return mapToReturnReading(optional.get());
+		} 
+		return new Reading();
 	}
 
 	public List<Reading> mapRecordListToReturnList(Iterable<ReadingRecord> findTopByDateBetweenOrderByDate) {
@@ -51,6 +45,20 @@ public class ReadingRecordMapper {
 			readings.add(mapToReturnReading(record));
 		}
 		return readings;
+	}
+
+	public Reading mapToReturnReading(ReadingRecord record) {
+		Reading reading = new Reading();
+		reading.setCreator(Reading.CreatorEnum.valueOf(record.getCreator()));
+		reading.setDate(record.getDate().toString());
+		reading.setHumidity(record.getHumidity());
+		reading.setId(record.getId());
+		reading.setMoisture(record.getMoisture());
+		reading.setTemp(record.getTemp());
+		reading.setLight(record.getLight());
+		reading.setName(record.getName());
+		reading.setWatered(record.getWatered());
+		return reading;
 	}
 
 }
