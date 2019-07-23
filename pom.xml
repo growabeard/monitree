@@ -39,9 +39,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-            		<groupId>org.springframework.boot</groupId>
-            		<artifactId>spring-boot-starter-actuator</artifactId>
-        	</dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-commons</artifactId>
@@ -49,7 +49,7 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.4-1201-jdbc4</version>
+			<version>42.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>io.swagger</groupId>
@@ -91,50 +91,25 @@
 				<artifactId>swagger-codegen-maven-plugin</artifactId>
 				<version>${plugin.version.swagger.codegen}</version>
 				<executions>
-					<!--<execution>
-						<id>dart-client</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<output>${project.build.directory}/generated-sources/dart</output>
-							<apiPackage>${swagger.code.generation.base.package}.client.api</apiPackage>
-							<modelPackage>${swagger.code.generation.base.package}.client.model</modelPackage>
-							<invokerPackage>${swagger.code.generation.base.package}.client.handler</invokerPackage>
-							<language>dart</language>
-						</configuration>
-					</execution>
-					<execution>
-						<id>cpp-client</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<output>${project.build.directory}/generated-sources/cpp</output>
-							<apiPackage>${swagger.code.generation.base.package}.client.api</apiPackage>
-							<modelPackage>${swagger.code.generation.base.package}.client.model</modelPackage>
-							<invokerPackage>${swagger.code.generation.base.package}.client.handler</invokerPackage>
-							<language>cpprest</language>
-						</configuration>
-					</execution>
-					<execution>
-						<id>api</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<output>${project.build.directory}/generated-sources/api</output>
-							<apiPackage>${swagger.code.generation.base.package}.gen.api</apiPackage>
-							<modelPackage>${swagger.code.generation.base.package}.gen.model</modelPackage>
-							<language>spring</language>
-							<configOptions>
-								<dateLibrary>java</dateLibrary>
-								<configPackage>${swagger.code.generation.base.package}.gen.config</configPackage>
-								<basePackage>${swagger.code.generation.base.package}.gen.handler</basePackage>
-								<generateSupportingFiles>false</generateSupportingFiles>
-							</configOptions>
-						</configuration>
-					</execution-->
+					<!--<execution> <id>dart-client</id> <goals> <goal>generate</goal> </goals> 
+						<configuration> <output>${project.build.directory}/generated-sources/dart</output> 
+						<apiPackage>${swagger.code.generation.base.package}.client.api</apiPackage> 
+						<modelPackage>${swagger.code.generation.base.package}.client.model</modelPackage> 
+						<invokerPackage>${swagger.code.generation.base.package}.client.handler</invokerPackage> 
+						<language>dart</language> </configuration> </execution> <execution> <id>cpp-client</id> 
+						<goals> <goal>generate</goal> </goals> <configuration> <output>${project.build.directory}/generated-sources/cpp</output> 
+						<apiPackage>${swagger.code.generation.base.package}.client.api</apiPackage> 
+						<modelPackage>${swagger.code.generation.base.package}.client.model</modelPackage> 
+						<invokerPackage>${swagger.code.generation.base.package}.client.handler</invokerPackage> 
+						<language>cpprest</language> </configuration> </execution> <execution> <id>api</id> 
+						<goals> <goal>generate</goal> </goals> <configuration> <output>${project.build.directory}/generated-sources/api</output> 
+						<apiPackage>${swagger.code.generation.base.package}.gen.api</apiPackage> 
+						<modelPackage>${swagger.code.generation.base.package}.gen.model</modelPackage> 
+						<language>spring</language> <configOptions> <dateLibrary>java</dateLibrary> 
+						<configPackage>${swagger.code.generation.base.package}.gen.config</configPackage> 
+						<basePackage>${swagger.code.generation.base.package}.gen.handler</basePackage> 
+						<generateSupportingFiles>false</generateSupportingFiles> </configOptions> 
+						</configuration> </execution -->
 				</executions>
 				<configuration>
 					<inputSpec>${user.dir}/yaml/${input.yaml.file}</inputSpec>
