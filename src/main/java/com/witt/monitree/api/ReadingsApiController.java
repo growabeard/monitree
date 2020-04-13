@@ -28,6 +28,11 @@ public class ReadingsApiController implements ReadingsApi {
 	public ResponseEntity<Reading> createHistory(@ApiParam(value = "the reading to create"  )  @Valid @RequestBody Reading reading) {
         return new ResponseEntity<Reading>(readingDelegate.save(reading), HttpStatus.OK);
     }
+	
+	@RequestMapping("/")
+    public String forward() {
+        return "index.html";
+    }
 
     @Override
     public ResponseEntity<Void> deleteReadingById(@ApiParam(value = "Reading id",required=true ) @PathVariable("id") Long id) {
