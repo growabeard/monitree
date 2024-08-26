@@ -19,7 +19,7 @@
 		<input.yaml.file>monitree.yaml</input.yaml.file>
 		<version.swagger>1.5.13</version.swagger>
 		<start-class>com.witt.monitree.MoniTreeApplication</start-class>
-		<version.springfox>2.7.0</version.springfox>
+		<version.springfox>2.10.0</version.springfox>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
